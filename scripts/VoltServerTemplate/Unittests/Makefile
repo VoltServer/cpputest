@@ -11,6 +11,11 @@ PROJECT_HOME_DIR = .
 ifeq "$(CPPUTEST_HOME)" ""
     CPPUTEST_HOME = ../CppUTest
 endif
+
+ifeq "$(CI)" "true"
+	CPPUTEST_CPPFLAGS += -DOUTPUT_JUNIT_XML
+endif
+
 CPP_PLATFORM = Gcc
 
 # to pick specific files (rather than directories) use this:    

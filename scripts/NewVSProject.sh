@@ -4,7 +4,6 @@
 
 PROJECT_NAME=$1
 CODE_LEGAL_PROJECT_NAME=$(echo $PROJECT_NAME | sed 's/-/_/g')
-TEMPLATE_DIR=${CPPUTEST_HOME}/scripts/templates
 ORIGINAL_DIR=$(pwd)
 
 if [ -e ${PROJECT_NAME} ] ; then

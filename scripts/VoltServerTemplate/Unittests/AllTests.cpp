@@ -9,11 +9,16 @@ int main(int argc, char* argv[])
    if (argc != 1) {
       return CommandLineTestRunner::RunAllTests(argc, argv);
    } else {
-      char* defaultArgs[3];
+      char* defaultArgs[4];
       defaultArgs[0] = argv[0];  // Pass the executable name
       defaultArgs[1] = (char *) "-r2";    // Request two passes
       defaultArgs[2] = (char *) "-c";     // Colorize output
-      return CommandLineTestRunner::RunAllTests(3, defaultArgs);
+#ifdef OUTPUT_JUNIT_XML
+      defaultArgs[3] = (char *) "-ojunit"; // output JUnit ant style XML (for CircleCI)
+#else
+      defaultArgs[3] = (char *) "-onormal"; // otherwise we're running locally, use normal output
+#endif
+      return CommandLineTestRunner::RunAllTests(4, defaultArgs);
    }
 }
 
